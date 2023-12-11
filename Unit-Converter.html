@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://limecs1130.w3spaces.com/computations.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1143.0" data-gr-ext-installed="">
+
+<h1>Unit Converter</h1>
+
+<label for="valueInput">Enter the value to convert:</label>
+<input type="number" id="valueInput">
+
+<label for="conversionType">Choose a conversion:</label>
+<select id="conversionType">
+    <option value="1">Fahrenheit to Celsius</option>
+    <option value="2">Celsius to Fahrenheit</option>
+    <option value="3">Meters to Feet</option>
+    <option value="4">Feet to Meters</option>
+</select>
+
+<button onclick="convertUnits()">Convert</button>
+<br>
+<br>
+<label id="resultLabel"></label>
+
+<script>
+    function convertUnits() {
+        var choice = parseInt(document.getElementById("conversionType").value);
+
+        var inputValue = parseFloat(document.getElementById("valueInput").value);
+
+        if (isNaN(inputValue)) {
+            document.getElementById("resultLabel").innerText = "Please enter a valid number!";
+            return;
+        }
+
+        switch (choice) {
+            case 1:
+                var celsius = (inputValue - 32) * (5 / 9);
+                document.getElementById("resultLabel").innerText = inputValue + " Fahrenheit is equal to " + celsius.toFixed(2) + " Celsius";
+                break;
+            case 2:
+                var fahrenheit = (inputValue * 9 / 5) + 32;
+                document.getElementById("resultLabel").innerText = inputValue + " Celsius is equal to " + fahrenheit.toFixed(2) + " Fahrenheit";
+                break;
+            case 3:
+                var feet = inputValue * 3.28084;
+                document.getElementById("resultLabel").innerText = inputValue + " Meters is equal to " + feet.toFixed(2) + " Feet";
+                break;
+            case 4:
+                var meters = inputValue / 3.28084;
+                document.getElementById("resultLabel").innerText = inputValue + " Feet is equal to " + meters.toFixed(2) + " Meters";
+                break;
+            default:
+                document.getElementById("resultLabel").innerText = "Invalid choice. Please choose a number between 1 and 4.";
+        }
+    }
+</script>
+
+<br>
+<br>
+<a href="https://limecs1130.w3spaces.com/index.html"> Go back </a>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
