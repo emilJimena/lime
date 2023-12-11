@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://limecs1130.w3spaces.com/Payroll.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Program</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1143.0" data-gr-ext-installed="">
+
+    <h2>Payroll Program</h2>
+
+    <label for="employeeName">Employee Name:</label>
+    <input type="text" id="employeeName">
+
+    <label for="daysWorked">Days Worked:</label>
+    <input type="number" id="daysWorked">
+
+    <label for="dailyRate">Daily Rate:</label>
+    <input type="number" id="dailyRate">
+
+    <label for="deductionAmount">Deduction Amount:</label>
+    <input type="number" id="deductionAmount">
+
+    <button onclick="addEmployee()">Add Employee</button>
+
+    <label for="deleteLineNumber">Delete Employee (Line Number):</label>
+    <input type="number" id="deleteLineNumber">
+
+    <button onclick="deleteEmployee()">Delete Employee</button>
+
+    <table id="payrollTable"><tbody><tr><th>No.</th><th>Employee Name</th><th>Days Worked</th><th>Daily Rate</th><th>Gross Pay</th><th>Deduction Amount</th><th>Net Pay</th></tr></tbody></table>
+
+    <script>
+        let payrollList = [];
+
+        function addEmployee() {
+            const employeeName = document.getElementById("employeeName").value;
+            const daysWorked = parseFloat(document.getElementById("daysWorked").value);
+            const dailyRate = parseFloat(document.getElementById("dailyRate").value);
+            const deductionAmount = parseFloat(document.getElementById("deductionAmount").value);
+
+            const grossPay = daysWorked * dailyRate;
+            const netPay = grossPay - deductionAmount;
+
+            const newEmployee = {
+                employeeName,
+                daysWorked,
+                dailyRate,
+                grossPay,
+                deductionAmount,
+                netPay
+            };
+
+            payrollList.push(newEmployee);
+            displayPayrollList();
+        }
+
+        function deleteEmployee() {
+            const deleteLineNumber = parseInt(document.getElementById("deleteLineNumber").value);
+            if (deleteLineNumber >= 1 && deleteLineNumber <= payrollList.length) {
+                payrollList.splice(deleteLineNumber - 1, 1);
+                displayPayrollList();
+            } else {
+                alert("Invalid line number. Please try again.");
+            }
+        }
+
+        function displayPayrollList() {
+            const table = document.getElementById("payrollTable");
+            table.innerHTML = "<tr><th>No.</th><th>Employee Name</th><th>Days Worked</th><th>Daily Rate</th><th>Gross Pay</th><th>Deduction Amount</th><th>Net Pay</th></tr>";
+
+            payrollList.forEach((employee, index) => {
+                const row = table.insertRow(-1);
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                const cell3 = row.insertCell(2);
+                const cell4 = row.insertCell(3);
+                const cell5 = row.insertCell(4);
+                const cell6 = row.insertCell(5);
+                const cell7 = row.insertCell(6);
+
+                cell1.innerHTML = index + 1;
+                cell2.innerHTML = employee.employeeName;
+                cell3.innerHTML = employee.daysWorked;
+                cell4.innerHTML = employee.dailyRate;
+                cell5.innerHTML = employee.grossPay;
+                cell6.innerHTML = employee.deductionAmount;
+                cell7.innerHTML = employee.netPay;
+            });
+        }
+    </script>
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
